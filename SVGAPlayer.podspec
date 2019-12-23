@@ -1,6 +1,6 @@
 
 Pod::Spec.new do |s|
-  s.name         = "SVGAPlayer"
+  s.name         = "SVGAPlayer-Magic"
   s.version      = "2.5.2"
   s.summary      = "SVGAPlayer 是一个高性能的动画播放器"
   s.description  = <<-DESC
@@ -13,7 +13,9 @@ Pod::Spec.new do |s|
   s.license      = "Apache 2.0"
   s.author       = { "PonyCui" => "cuiminghui1@yy.com" }
   s.platform     = :ios, "7.0"
-  s.source       = { :git => "https://github.com/yyued/SVGAPlayer-iOS.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/SvenFang/SVGAPlayer-iOS.git", :tag => s.version }
+  s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES'}
+
   s.subspec 'Core' do |ss|
     ss.source_files  = "Source/*.{h,m}"
     ss.requires_arc = true
@@ -21,6 +23,7 @@ Pod::Spec.new do |s|
     ss.library = "z"
     ss.framework = "AVFoundation"
     ss.dependency 'SVGAPlayer/ProtoFiles'
+    ss.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES'}
   end
   s.subspec 'ProtoFiles' do |ss|
     ss.source_files  = "Source/pbobjc/*.{h,m}"
@@ -28,6 +31,7 @@ Pod::Spec.new do |s|
     ss.dependency 'Protobuf', '~> 3.4'
     ss.pod_target_xcconfig = {
       'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1',
+      'DEFINES_MODULE' => 'YES'
     }
   end  
 end
